@@ -93,3 +93,6 @@ The GitHub Actions workflow runs Ruff, Flake8, and Pytest on pushes and pull req
 | `bank_statement.csv` | Incoming credits and operating debits | `value_date`, `credit`, `debit`, `remittance_details` |
 
 Amounts in the deterministic sample are in CLP. Automatic reference matching uses invoice identifiers embedded in bank remittance details. Unreferenced deposits are matched only if there is exactly one eligible invoice within a configurable amount tolerance and due-date window; ambiguous transfers remain unallocated. The cash forecast is a transparent scenario model, not a statistical prediction: delinquency represents receipts excluded from the projection horizon, and operating costs are estimated from recent observed debit activity. Production use should connect to authorized source systems, validate jurisdiction-specific tax rules, and independently review all fuzzy matches.
+
+✒️ Author
+Francisco Longares — Data Scientist & AI Solutions Developer — longaresf
