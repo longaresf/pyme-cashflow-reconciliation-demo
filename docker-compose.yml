@@ -1,0 +1,16 @@
+services:
+  cashflow-dashboard:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8501:8501"
+    volumes:
+      - ./data:/app/data
+    environment:
+      STREAMLIT_BROWSER_GATHER_USAGE_STATS: "false"
+      KAGGLE_DATASET: ${KAGGLE_DATASET:-}
+      KAGGLE_USERNAME: ${KAGGLE_USERNAME:-}
+      KAGGLE_KEY: ${KAGGLE_KEY:-}
+      KAGGLE_AMOUNT_TO_CLP: ${KAGGLE_AMOUNT_TO_CLP:-1200}
+    restart: unless-stopped
