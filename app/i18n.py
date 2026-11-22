@@ -317,6 +317,14 @@ def format_week_label(dt: Any, lang: str = DEFAULT_LANGUAGE) -> str:
 # High-contrast CSS styles for Streamlit components
 HIGH_CONTRAST_CSS = """
 <style>
+/* Root application containers: enforce high-contrast dark palette */
+.stApp,
+[data-testid="stAppViewContainer"],
+.main {
+    background-color: #0E1117 !important;
+    color: #F1F5F9 !important;
+}
+
 /* Page container padding: Ensure top content is completely clear of the Streamlit navbar */
 .block-container {
     padding-top: 3.75rem !important;
@@ -373,9 +381,8 @@ p.app-subtitle-text,
     opacity: 1 !important;
 }
 
-/* Ensure all headings and markdown containers across app are 100% visible with high contrast */
+/* Ensure all headings across app are 100% visible with high contrast */
 h1, h2, h3, h4, h5, h6,
-h1 *, h2 *, h3 *, h4 *, h5 *, h6 *,
 [data-testid="stHeadingWithActionElements"] h1,
 [data-testid="stHeadingWithActionElements"] h2,
 [data-testid="stHeadingWithActionElements"] h3,
@@ -388,6 +395,21 @@ h1 *, h2 *, h3 *, h4 *, h5 *, h6 *,
     visibility: visible !important;
     opacity: 1 !important;
     display: block !important;
+}
+
+/* Child elements inside headings: inherit light color without breaking inline flow */
+h1 *, h2 *, h3 *, h4 *, h5 *, h6 *,
+[data-testid="stHeadingWithActionElements"] h1 *,
+[data-testid="stHeadingWithActionElements"] h2 *,
+[data-testid="stHeadingWithActionElements"] h3 *,
+[data-testid="stMarkdownContainer"] h1 *,
+[data-testid="stMarkdownContainer"] h2 *,
+[data-testid="stMarkdownContainer"] h3 * {
+    color: #F8FAFC !important;
+    -webkit-text-fill-color: #F8FAFC !important;
+    font-weight: 700 !important;
+    visibility: visible !important;
+    opacity: 1 !important;
 }
 
 /* Captions and subtitles across app */
@@ -490,6 +512,59 @@ button[data-baseweb="tab"][aria-selected="true"] {
     border-bottom: 2px solid #38BDF8 !important;
     visibility: visible !important;
     opacity: 1 !important;
+}
+
+/* Alert notifications (st.success, st.info, st.warning, st.error) */
+[data-testid="stAlert"] {
+    background-color: #161B22 !important;
+    border: 1px solid #30363D !important;
+    border-radius: 8px !important;
+    color: #F8FAFC !important;
+}
+
+[data-testid="stAlert"] p,
+[data-testid="stAlert"] div {
+    color: #F8FAFC !important;
+}
+
+/* Secondary buttons & download buttons */
+button[kind="secondary"],
+.stButton > button:not([kind="primary"]),
+.stDownloadButton > button:not([kind="primary"]) {
+    background-color: #161B22 !important;
+    border: 1px solid #30363D !important;
+    color: #F8FAFC !important;
+    border-radius: 8px !important;
+    font-weight: 600 !important;
+    transition: all 0.15s ease-in-out !important;
+}
+
+button[kind="secondary"]:hover,
+.stButton > button:not([kind="primary"]):hover,
+.stDownloadButton > button:not([kind="primary"]):hover {
+    background-color: #1E293B !important;
+    border-color: #38BDF8 !important;
+    color: #F8FAFC !important;
+}
+
+/* Primary buttons */
+button[kind="primary"],
+.stButton > button[kind="primary"],
+.stDownloadButton > button[kind="primary"] {
+    background-color: #0284C7 !important;
+    border: 1px solid #38BDF8 !important;
+    color: #F8FAFC !important;
+    border-radius: 8px !important;
+    font-weight: 600 !important;
+    transition: all 0.15s ease-in-out !important;
+}
+
+button[kind="primary"]:hover,
+.stButton > button[kind="primary"]:hover,
+.stDownloadButton > button[kind="primary"]:hover {
+    background-color: #0369A1 !important;
+    border-color: #7DD3FC !important;
+    color: #FFFFFF !important;
 }
 
 /* Plotly chart container styling: clear solid dark background */

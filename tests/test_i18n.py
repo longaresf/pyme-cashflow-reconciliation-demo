@@ -121,9 +121,14 @@ def test_high_contrast_css_contains_required_styles():
     assert "#CBD5E1" in HIGH_CONTRAST_CSS
     assert "#161B22" in HIGH_CONTRAST_CSS
     assert "#30363D" in HIGH_CONTRAST_CSS
+    assert ".stApp" in HIGH_CONTRAST_CSS
+    assert '[data-testid="stAppViewContainer"]' in HIGH_CONTRAST_CSS
     assert '[data-testid="stMetric"]' in HIGH_CONTRAST_CSS
     assert '[data-testid="stMetricLabel"]' in HIGH_CONTRAST_CSS
     assert '[data-testid="stMetricValue"]' in HIGH_CONTRAST_CSS
+    assert '[data-testid="stAlert"]' in HIGH_CONTRAST_CSS
+    assert 'button[kind="secondary"]' in HIGH_CONTRAST_CSS
+    assert 'button[kind="primary"]' in HIGH_CONTRAST_CSS
     assert "visibility: visible !important" in HIGH_CONTRAST_CSS
     assert "display: none" not in HIGH_CONTRAST_CSS
     assert "visibility: hidden" not in HIGH_CONTRAST_CSS
