@@ -1,17 +1,18 @@
-FROM python:3.11-slim
+FROM python:3.13-slim
 
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
-    PIP_NO_CACHE_DIR=1
+    PIP_NO_CACHE_DIR=1 \
+    PYTHONPATH=/app
 
 WORKDIR /app
 COPY requirements.txt .
 RUN python -m pip install --upgrade pip && pip install -r requirements.txt
 COPY . .
-RUN mkdir -p data/raw data/processed
+RUN mkdir -p data/raw data/processed && touch src/__init__.py
 
 EXPOSE 8501
 HEALTHCHECK --interval=30s --timeout=5s --start-period=20s --retries=3 \
   CMD python -c "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8501/_stcore/health', timeout=3)"
 
-CMD ["sh", "-c", "python -m src.data_loader && streamlit run app/main.py --server.address=0.0.0.0 --server.port=8501"]
+CMD ["sh", "-c", "PYTHONPATH=/app python -m src.data_loader && PYTHONPATH=/app streamlit run app/main.py --server.address=0.0.0.0 --server.port=8501"]
