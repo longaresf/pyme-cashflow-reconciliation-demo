@@ -66,6 +66,12 @@ TRANSLATIONS: dict[str, dict[str, str]] = {
         # Excel Workbook sheets
         "excel_sheet_exceptions": "Excepciones facturas",
         "excel_sheet_unmatched": "Abonos bancarios no asignados",
+        # General column / chart terms
+        "invoice_count": "Cantidad Facturas",
+        "status": "Estado",
+        # Download filenames
+        "filename_chart_png": "desempeno_cobranzas_es.png",
+        "filename_exceptions_excel": "excepciones_conciliacion_es.xlsx",
     },
     LANG_EN: {
         # App metadata & headers
@@ -120,6 +126,12 @@ TRANSLATIONS: dict[str, dict[str, str]] = {
         # Excel Workbook sheets
         "excel_sheet_exceptions": "Invoice exceptions",
         "excel_sheet_unmatched": "Unmatched bank credits",
+        # General column / chart terms
+        "invoice_count": "Invoice Count",
+        "status": "Status",
+        # Download filenames
+        "filename_chart_png": "collection_performance_en.png",
+        "filename_exceptions_excel": "reconciliation_exceptions_en.xlsx",
     },
 }
 
@@ -331,8 +343,8 @@ header[data-testid="stHeader"] {
 h1.app-title-text,
 [data-testid="stMarkdownContainer"] .app-title-text,
 [data-testid="stMarkdownContainer"] h1.app-title-text {
-    color: #0F172A !important;
-    -webkit-text-fill-color: #0F172A !important;
+    color: #F8FAFC !important;
+    -webkit-text-fill-color: #F8FAFC !important;
     font-size: 2.25rem !important;
     font-weight: 800 !important;
     line-height: 1.25 !important;
@@ -349,8 +361,8 @@ h1.app-title-text,
 p.app-subtitle-text,
 [data-testid="stMarkdownContainer"] .app-subtitle-text,
 [data-testid="stMarkdownContainer"] p.app-subtitle-text {
-    color: #334155 !important;
-    -webkit-text-fill-color: #334155 !important;
+    color: #CBD5E1 !important;
+    -webkit-text-fill-color: #CBD5E1 !important;
     font-size: 1.05rem !important;
     font-weight: 500 !important;
     line-height: 1.4 !important;
@@ -370,8 +382,8 @@ h1 *, h2 *, h3 *, h4 *, h5 *, h6 *,
 [data-testid="stMarkdownContainer"] h1,
 [data-testid="stMarkdownContainer"] h2,
 [data-testid="stMarkdownContainer"] h3 {
-    color: #0F172A !important;
-    -webkit-text-fill-color: #0F172A !important;
+    color: #F8FAFC !important;
+    -webkit-text-fill-color: #F8FAFC !important;
     font-weight: 700 !important;
     visibility: visible !important;
     opacity: 1 !important;
@@ -385,39 +397,39 @@ h1 *, h2 *, h3 *, h4 *, h5 *, h6 *,
 .stCaption,
 .stCaption *,
 [data-testid="stMarkdownContainer"] p:not(.app-subtitle-text) {
-    color: #334155 !important;
-    -webkit-text-fill-color: #334155 !important;
+    color: #CBD5E1 !important;
+    -webkit-text-fill-color: #CBD5E1 !important;
     visibility: visible !important;
     opacity: 1 !important;
 }
 
 /* Metric card containers */
 [data-testid="stMetric"] {
-    background-color: #F8FAFC !important;
-    border: 1px solid #CBD5E1 !important;
+    background-color: #161B22 !important;
+    border: 1px solid #30363D !important;
     border-radius: 10px !important;
     padding: 16px 20px !important;
-    box-shadow: 0 1px 3px 0 rgba(15, 23, 42, 0.05) !important;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.4) !important;
 }
 
-/* Metric labels: dark slate for high legibility */
+/* Metric labels: light slate for high legibility */
 [data-testid="stMetricLabel"],
 [data-testid="stMetricLabel"] *,
 [data-testid="stMetricLabelText"] {
-    color: #334155 !important;
-    -webkit-text-fill-color: #334155 !important;
+    color: #CBD5E1 !important;
+    -webkit-text-fill-color: #CBD5E1 !important;
     font-size: 0.875rem !important;
     font-weight: 600 !important;
     visibility: visible !important;
     opacity: 1 !important;
 }
 
-/* Metric values: intense dark for maximum contrast */
+/* Metric values: intense light for maximum contrast */
 [data-testid="stMetricValue"],
 [data-testid="stMetricValue"] *,
 [data-testid="stMetricValue"] div {
-    color: #0F172A !important;
-    -webkit-text-fill-color: #0F172A !important;
+    color: #F8FAFC !important;
+    -webkit-text-fill-color: #F8FAFC !important;
     font-size: 1.65rem !important;
     font-weight: 700 !important;
     visibility: visible !important;
@@ -432,90 +444,90 @@ h1 *, h2 *, h3 *, h4 *, h5 *, h6 *,
 
 /* Sidebar styling and contrast */
 [data-testid="stSidebar"] {
-    background-color: #F8FAFC !important;
-    border-right: 1px solid #CBD5E1 !important;
+    background-color: #161B22 !important;
+    border-right: 1px solid #30363D !important;
 }
 
 [data-testid="stSidebar"] label,
 [data-testid="stSidebar"] [data-testid="stWidgetLabel"] p,
 [data-testid="stSidebar"] [data-testid="stWidgetLabel"] span {
-    color: #0F172A !important;
-    -webkit-text-fill-color: #0F172A !important;
+    color: #F8FAFC !important;
+    -webkit-text-fill-color: #F8FAFC !important;
     font-weight: 600 !important;
 }
 
 [data-testid="stSidebar"] [data-testid="stCaptionContainer"] p {
-    color: #475569 !important;
-    -webkit-text-fill-color: #475569 !important;
+    color: #CBD5E1 !important;
+    -webkit-text-fill-color: #CBD5E1 !important;
 }
 
 /* Widget labels (selectboxes, sliders) */
 [data-testid="stWidgetLabel"] p,
 [data-testid="stWidgetLabel"] label {
-    color: #0F172A !important;
-    -webkit-text-fill-color: #0F172A !important;
+    color: #F8FAFC !important;
+    -webkit-text-fill-color: #F8FAFC !important;
     font-weight: 600 !important;
 }
 
 /* Tabs styling */
 [data-baseweb="tab-list"] {
-    border-bottom: 1px solid #CBD5E1 !important;
+    border-bottom: 1px solid #30363D !important;
     gap: 8px !important;
 }
 
 button[data-baseweb="tab"] {
-    color: #475569 !important;
-    -webkit-text-fill-color: #475569 !important;
+    color: #CBD5E1 !important;
+    -webkit-text-fill-color: #CBD5E1 !important;
     font-weight: 600 !important;
     visibility: visible !important;
     opacity: 1 !important;
 }
 
 button[data-baseweb="tab"][aria-selected="true"] {
-    color: #0F172A !important;
-    -webkit-text-fill-color: #0F172A !important;
+    color: #F8FAFC !important;
+    -webkit-text-fill-color: #F8FAFC !important;
     font-weight: 700 !important;
-    border-bottom: 2px solid #2563EB !important;
+    border-bottom: 2px solid #38BDF8 !important;
     visibility: visible !important;
     opacity: 1 !important;
 }
 
-/* Plotly chart container styling: clear solid background */
+/* Plotly chart container styling: clear solid dark background */
 .js-plotly-plot {
     border-radius: 8px;
-    background-color: #FFFFFF !important;
+    background-color: #161B22 !important;
 }
 </style>
 """
 
 
 def apply_plotly_theme(fig: go.Figure) -> go.Figure:
-    """Apply high-contrast light theme with white background and legible dark text."""
+    """Apply high-contrast dark theme with dark background and legible light text."""
     fig.update_layout(
-        template="plotly_white",
-        paper_bgcolor="#FFFFFF",
-        plot_bgcolor="#FFFFFF",
+        template="plotly_dark",
+        paper_bgcolor="#161B22",
+        plot_bgcolor="#161B22",
         font={
             "family": "Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
-            "color": "#0F172A",
+            "color": "#F1F5F9",
             "size": 12,
         },
-        title_font={"color": "#0F172A", "size": 14},
+        title_font={"color": "#F8FAFC", "size": 14},
         legend={
-            "font": {"color": "#334155", "size": 11},
-            "title_font": {"color": "#0F172A", "size": 12},
+            "font": {"color": "#CBD5E1", "size": 11},
+            "title_font": {"color": "#F8FAFC", "size": 12},
         },
     )
     fig.update_xaxes(
-        gridcolor="#E2E8F0",
-        linecolor="#CBD5E1",
-        tickfont={"color": "#334155", "size": 11},
-        title_font={"color": "#0F172A", "size": 12},
+        gridcolor="#30363D",
+        linecolor="#30363D",
+        tickfont={"color": "#CBD5E1", "size": 11},
+        title_font={"color": "#F8FAFC", "size": 12},
     )
     fig.update_yaxes(
-        gridcolor="#E2E8F0",
-        linecolor="#CBD5E1",
-        tickfont={"color": "#334155", "size": 11},
-        title_font={"color": "#0F172A", "size": 12},
+        gridcolor="#30363D",
+        linecolor="#30363D",
+        tickfont={"color": "#CBD5E1", "size": 11},
+        title_font={"color": "#F8FAFC", "size": 12},
     )
     return fig

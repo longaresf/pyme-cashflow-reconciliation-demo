@@ -66,11 +66,23 @@ def create_collection_report(
         axis=1,
     )
 
-    sns.set_theme(style="whitegrid", palette="deep")
+    sns.set_theme(
+        style="darkgrid",
+        rc={
+            "axes.facecolor": "#161B22",
+            "figure.facecolor": "#161B22",
+            "grid.color": "#30363D",
+            "axes.edgecolor": "#30363D",
+            "text.color": "#F8FAFC",
+            "axes.labelcolor": "#CBD5E1",
+            "xtick.color": "#CBD5E1",
+            "ytick.color": "#CBD5E1",
+        },
+    )
     figure, axes = plt.subplots(1, 2, figsize=(12, 4.5))
-    figure.patch.set_facecolor("#FFFFFF")
-    axes[0].set_facecolor("#FFFFFF")
-    axes[1].set_facecolor("#FFFFFF")
+    figure.patch.set_facecolor("#161B22")
+    axes[0].set_facecolor("#161B22")
+    axes[1].set_facecolor("#161B22")
 
     if paid.empty:
         axes[0].text(
@@ -79,7 +91,7 @@ def create_collection_report(
             texts["hist_empty"],
             ha="center",
             va="center",
-            color="#334155",
+            color="#CBD5E1",
             fontsize=11,
         )
         axes[0].set_axis_off()
@@ -88,11 +100,11 @@ def create_collection_report(
             data=paid, x="payment_days", bins=18, kde=True, ax=axes[0], color="#0D9488"
         )
         axes[0].set_title(
-            texts["hist_title"], color="#0F172A", fontweight="bold", fontsize=11
+            texts["hist_title"], color="#F8FAFC", fontweight="bold", fontsize=11
         )
-        axes[0].set_xlabel(texts["hist_xlabel"], color="#334155", fontsize=10)
-        axes[0].set_ylabel(texts["hist_ylabel"], color="#334155", fontsize=10)
-        axes[0].tick_params(colors="#334155")
+        axes[0].set_xlabel(texts["hist_xlabel"], color="#CBD5E1", fontsize=10)
+        axes[0].set_ylabel(texts["hist_ylabel"], color="#CBD5E1", fontsize=10)
+        axes[0].tick_params(colors="#CBD5E1")
 
     if monthly.empty:
         axes[1].text(
@@ -101,7 +113,7 @@ def create_collection_report(
             texts["bar_empty"],
             ha="center",
             va="center",
-            color="#334155",
+            color="#CBD5E1",
             fontsize=11,
         )
         axes[1].set_axis_off()
@@ -110,16 +122,16 @@ def create_collection_report(
             data=monthly, x="invoice_month", y="dso", ax=axes[1], color="#2563EB"
         )
         axes[1].set_title(
-            texts["bar_title"], color="#0F172A", fontweight="bold", fontsize=11
+            texts["bar_title"], color="#F8FAFC", fontweight="bold", fontsize=11
         )
-        axes[1].set_xlabel(texts["bar_xlabel"], color="#334155", fontsize=10)
-        axes[1].set_ylabel(texts["bar_ylabel"], color="#334155", fontsize=10)
-        axes[1].tick_params(axis="x", rotation=45, colors="#334155")
-        axes[1].tick_params(axis="y", colors="#334155")
+        axes[1].set_xlabel(texts["bar_xlabel"], color="#CBD5E1", fontsize=10)
+        axes[1].set_ylabel(texts["bar_ylabel"], color="#CBD5E1", fontsize=10)
+        axes[1].tick_params(axis="x", rotation=45, colors="#CBD5E1")
+        axes[1].tick_params(axis="y", colors="#CBD5E1")
 
-    figure.suptitle(texts["suptitle"], fontsize=13, fontweight="bold", color="#0F172A")
+    figure.suptitle(texts["suptitle"], fontsize=13, fontweight="bold", color="#F8FAFC")
     figure.tight_layout()
     output_path.parent.mkdir(parents=True, exist_ok=True)
-    figure.savefig(output_path, dpi=160, bbox_inches="tight", facecolor="#FFFFFF")
+    figure.savefig(output_path, dpi=160, bbox_inches="tight", facecolor="#161B22")
     plt.close(figure)
     return output_path

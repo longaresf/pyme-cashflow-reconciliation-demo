@@ -78,9 +78,7 @@ def _exception_workbook(
     output = BytesIO()
     with pd.ExcelWriter(output, engine="openpyxl") as writer:
         exception_rows.to_excel(writer, sheet_name=sheet_exceptions, index=False)
-        result.unmatched_bank.to_excel(
-            writer, sheet_name=sheet_unmatched, index=False
-        )
+        result.unmatched_bank.to_excel(writer, sheet_name=sheet_unmatched, index=False)
     return output.getvalue()
 
 
@@ -107,8 +105,8 @@ def _render_reconciliation(
             y="status_display",
             color="status_display",
             labels={
-                "invoice_count": t("invoice_count", lang),
-                "status_display": t("status", lang),
+                "invoice_count": get_column_label("invoice_count", lang),
+                "status_display": get_column_label("status", lang),
             },
             color_discrete_sequence=px.colors.qualitative.Bold,
         )
@@ -224,7 +222,7 @@ def _render_cashflow(
             y=values,
             text=[_format_money(value) for value in values],
             textposition="outside",
-            textfont={"color": "#0F172A", "size": 11},
+            textfont={"color": "#F8FAFC", "size": 11},
             increasing={"marker": {"color": "#16A34A"}},
             decreasing={"marker": {"color": "#DC2626"}},
             totals={"marker": {"color": "#2563EB"}},
@@ -303,22 +301,23 @@ def _render_dso(result: ReconciliationResult, lang: str = DEFAULT_LANGUAGE) -> N
         st.download_button(
             t("download_chart_png", lang),
             data=CHART_FILE.read_bytes(),
-            file_name="collection_performance.png",
+            file_name=t("filename_chart_png", lang),
             mime="image/png",
         )
 
     st.download_button(
         t("download_exceptions_excel", lang),
         data=_exception_workbook(result, lang=lang),
-        file_name="reconciliation_exceptions.xlsx",
+        file_name=t("filename_exceptions_excel", lang),
         mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
         type="primary",
     )
 
 
 def main() -> None:
+    current_lang = st.session_state.get("app_language", DEFAULT_LANGUAGE)
     st.set_page_config(
-        page_title="Control de Flujo de Caja PYME",
+        page_title=t("app_page_title", current_lang),
         page_icon="💼",
         layout="wide",
         initial_sidebar_state="expanded",
@@ -328,11 +327,12 @@ def main() -> None:
 
     # Dynamic language selector in sidebar (default: Español)
     selected_language_name = st.sidebar.selectbox(
-        "Idioma / Language",
+        t("sidebar_lang_label", current_lang),
         options=LANGUAGE_CHOICES,
-        index=0,
+        index=0 if current_lang == LANG_ES else 1,
     )
     lang = LANG_ES if selected_language_name == "Español" else LANG_EN
+    st.session_state["app_language"] = lang
 
     # Native, high-contrast title and subtitle styled via HIGH_CONTRAST_CSS
     st.title(t("app_title", lang))

@@ -43,7 +43,6 @@ def test_title_and_subtitle_exact_values():
     )
 
 
-
 def test_status_labels_parity():
     """Ensure all reconciliation statuses are mapped in both languages."""
     statuses = [
@@ -79,6 +78,26 @@ def test_column_labels():
     assert get_column_label("invoice_id", LANG_ES) == "ID Factura"
     assert get_column_label("invoice_id", LANG_EN) == "Invoice ID"
     assert get_column_label("net_cashflow", LANG_ES) == "Flujo Neto"
+    assert get_column_label("invoice_count", LANG_ES) == "Cantidad Facturas"
+    assert get_column_label("invoice_count", LANG_EN) == "Invoice Count"
+    assert get_column_label("status", LANG_ES) == "Estado"
+    assert get_column_label("status", LANG_EN) == "Status"
+
+
+def test_download_filenames_localized():
+    """Verify download filenames are localized for both languages."""
+    assert t("filename_chart_png", LANG_ES) == "desempeno_cobranzas_es.png"
+    assert t("filename_chart_png", LANG_EN) == "collection_performance_en.png"
+    assert t("filename_exceptions_excel", LANG_ES) == "excepciones_conciliacion_es.xlsx"
+    assert (
+        t("filename_exceptions_excel", LANG_EN) == "reconciliation_exceptions_en.xlsx"
+    )
+
+
+def test_sidebar_lang_label_exact_values():
+    """Verify sidebar language selector label is localized."""
+    assert t("sidebar_lang_label", LANG_ES) == "Idioma / Language"
+    assert t("sidebar_lang_label", LANG_EN) == "Language / Idioma"
 
 
 def test_interpolation_with_t_helper():
@@ -100,8 +119,8 @@ def test_high_contrast_css_contains_required_styles():
     """Verify that CSS contains the required contrast properties and visibility."""
     assert "#F8FAFC" in HIGH_CONTRAST_CSS
     assert "#CBD5E1" in HIGH_CONTRAST_CSS
-    assert "#0F172A" in HIGH_CONTRAST_CSS
-    assert "#334155" in HIGH_CONTRAST_CSS
+    assert "#161B22" in HIGH_CONTRAST_CSS
+    assert "#30363D" in HIGH_CONTRAST_CSS
     assert '[data-testid="stMetric"]' in HIGH_CONTRAST_CSS
     assert '[data-testid="stMetricLabel"]' in HIGH_CONTRAST_CSS
     assert '[data-testid="stMetricValue"]' in HIGH_CONTRAST_CSS
@@ -110,24 +129,22 @@ def test_high_contrast_css_contains_required_styles():
     assert "visibility: hidden" not in HIGH_CONTRAST_CSS
     assert "opacity: 0" not in HIGH_CONTRAST_CSS
     assert "padding-top: 3.75rem !important" in HIGH_CONTRAST_CSS
-    assert "header[data-testid=\"stHeader\"]" in HIGH_CONTRAST_CSS
-    assert "-webkit-text-fill-color: #0F172A !important" in HIGH_CONTRAST_CSS
-    assert "-webkit-text-fill-color: #334155 !important" in HIGH_CONTRAST_CSS
+    assert 'header[data-testid="stHeader"]' in HIGH_CONTRAST_CSS
+    assert "-webkit-text-fill-color: #F8FAFC !important" in HIGH_CONTRAST_CSS
+    assert "-webkit-text-fill-color: #CBD5E1 !important" in HIGH_CONTRAST_CSS
     assert ".app-title-text" in HIGH_CONTRAST_CSS
     assert ".app-subtitle-text" in HIGH_CONTRAST_CSS
 
 
-
-
 def test_apply_plotly_theme():
-    """Verify that apply_plotly_theme sets plotly_white and white backgrounds."""
+    """Verify that apply_plotly_theme sets plotly_dark and dark backgrounds."""
     fig = go.Figure(go.Scatter(x=[1, 2], y=[3, 4]))
     themed_fig = apply_plotly_theme(fig)
     layout = themed_fig.layout
     assert layout.template is not None
-    assert layout.paper_bgcolor == "#FFFFFF"
-    assert layout.plot_bgcolor == "#FFFFFF"
-    assert layout.font.color == "#0F172A"
+    assert layout.paper_bgcolor == "#161B22"
+    assert layout.plot_bgcolor == "#161B22"
+    assert layout.font.color == "#F1F5F9"
 
 
 def test_app_main_import_and_helpers():
